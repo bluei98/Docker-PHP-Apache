@@ -1,13 +1,13 @@
 # Docker Ubuntu-PHP-Apache
 
 ## Version
-* Ubuntu 20.04
-* PHP 7.4.16 with composer
+* Ubuntu 22.04
+* PHP 8.1.2 with composer
 * Apache 2.4.46
 
 ## Quick Start
 ```sh
-$ docker run -d --rm -p 80:80 -p 443:443 dadyzeus/webserver:ubuntu20.04-php7.4-apache2.4
+$ docker run -d --rm -p 80:80 -p 443:443 dadyzeus/webserver:ubuntu22.04-php8.1-apache2.4
 ```
 
 ## Apache Modules
