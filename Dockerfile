@@ -1,5 +1,3 @@
-# docker run -d -p 80:80 -p 443:443 --name web dadyzeus/webserver:latest
-# docker build -t dadyzeus/webserver:ubuntu20.04-php7.4-apache . && docker run -it --rm -p 80:80 -p 443:443 dadyzeus/webserver:ubuntu21.04-php7.4-apache
 FROM ubuntu:20.04
 
 # hirsute to focal
@@ -50,6 +48,15 @@ COPY index.php /var/www/html/index.php
 # RUN wget https://raw.githubusercontent.com/bluei98/Docker-PHP-Apache/master/default-ssl.conf  -O /etc/apache2/sites-enabled/000-default-ssl.conf
 COPY default.conf /etc/apache2/sites-enabled/000-default.conf
 COPY default-ssl.conf /etc/apache2/sites-enabled/000-default-ssl.conf
+
+# IonCube 설치
+RUN mkdir /root/tmp 
+RUN cd /root/tmp
+RUN wget https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz -O /root/tmp/ioncube_loaders_lin_x86-64.tar.gz
+RUN tar -zxvf /root/tmp/ioncube_loaders_lin_x86-64.tar.gz -C /root/tmp
+RUN cp /root/tmp/ioncube/ioncube_loader_lin_7.4.so /usr/lib/php/20190902
+RUN echo "zend_extension = /usr/lib/php/20190902/ioncube_loader_lin_7.4.so" >> /etc/php/7.4/apache2/php.ini
+RUN echo "zend_extension = /usr/lib/php/20190902/ioncube_loader_lin_7.4.so" >> /etc/php/7.4/cli/php.ini
 
 # SCRIPT
 RUN echo 'service cron start\n/usr/sbin/apachectl -D FOREGROUND' > /entrypoint.sh
