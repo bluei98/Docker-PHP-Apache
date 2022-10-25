@@ -17,5 +17,3 @@ $ docker run -d --rm -p 80:80 -p 443:443 dadyzeus/webserver:ubuntu20.04-php7.4-a
 * expires
 * headers
 * rewrite
-
-## PHP Modules
