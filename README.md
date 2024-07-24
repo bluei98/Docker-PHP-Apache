@@ -7,8 +7,10 @@
 
 ## Quick Start
 ```sh
-$ docker run -d --rm -p 80:80 -p 443:443 dadyzeus/webserver:ubuntu22.04-php8.1-apache2.4
+$ docker build . -t dadyzeus/webserver:ubuntu22.04-php8.1-apache2.4 -t dadyzeus/webserver:latest
+$ docker run -d --rm -p 80:80 -p 443:443 dadyzeus/webserver:latest
 ```
+
 
 ## Apache Modules
 * ssl
