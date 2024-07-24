@@ -56,6 +56,15 @@ COPY index.php /var/www/html/index.php
 COPY default.conf /etc/apache2/sites-enabled/000-default.conf
 COPY default-ssl.conf /etc/apache2/sites-enabled/000-default-ssl.conf
 
+# Ioncube Loader
+RUN mkdir /root/tmp 
+RUN cd /root/tmp
+RUN wget https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz -O /root/tmp/ioncube_loaders_lin_x86-64.tar.gz
+RUN tar -zxvf /root/tmp/ioncube_loaders_lin_x86-64.tar.gz -C /root/tmp
+RUN cp /root/tmp/ioncube/ioncube_loader_lin_8.1.so /usr/lib/php/20210902
+RUN echo "zend_extension = /usr/lib/php/20210902/ioncube_loader_lin_8.1.so" >> /etc/php/8.1/apache2/php.ini
+RUN echo "zend_extension = /usr/lib/php/20210902/ioncube_loader_lin_8.1.so" >> /etc/php/8.1/cli/php.ini
+
 # SCRIPT
 RUN echo 'service cron start\n/usr/sbin/apachectl -D FOREGROUND' > /entrypoint.sh
 
