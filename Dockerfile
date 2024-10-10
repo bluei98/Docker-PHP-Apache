@@ -24,7 +24,7 @@ RUN apt-get install -y gcc make telnet whois vim git gettext cron mariadb-client
 
 # Apache PHP 설치
 RUN apt-get install -y apache2 apache2-utils libapache2-mod-php
-RUN apt-get install -y php php-dev php-mysql php-mbstring php-curl php-gd php-imagick php-memcache php-xmlrpc php-zip composer
+RUN apt-get install -y php php-dev php-mysql php-mbstring php-curl php-gd php-imagick php-memcache php-xmlrpc php-zip php-redis composer
 
 # 라이브러리 설치
 RUN pear install MIME_Type
