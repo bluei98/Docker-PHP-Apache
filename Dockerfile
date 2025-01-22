@@ -65,6 +65,9 @@ RUN cp /root/tmp/ioncube/ioncube_loader_lin_8.1.so /usr/lib/php/20210902
 RUN echo "zend_extension = /usr/lib/php/20210902/ioncube_loader_lin_8.1.so" >> /etc/php/8.1/apache2/php.ini
 RUN echo "zend_extension = /usr/lib/php/20210902/ioncube_loader_lin_8.1.so" >> /etc/php/8.1/cli/php.ini
 
+# GeoIP Download (From: https://github.com/wp-statistics/GeoLite2-City)
+COPY GeoLite2-City.mmdb /usr/share/GeoIP/GeoLite2-City.mmdb
+
 # SCRIPT
 RUN echo 'service cron start\n/usr/sbin/apachectl -D FOREGROUND' > /entrypoint.sh
 
