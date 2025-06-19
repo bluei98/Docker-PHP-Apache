@@ -6,6 +6,13 @@
 * Apache 2.4.46
 
 ## Quick Start
+
+### Docker Build
+
+```sh
+$ docker build . -t dadyzeus/webserver:ubuntu20.04-php7.4-apache2.4
+```
+
 ```sh
 $ docker run -d --rm -p 80:80 -p 443:443 dadyzeus/webserver:ubuntu20.04-php7.4-apache2.4
 ```
