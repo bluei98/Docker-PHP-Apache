@@ -68,6 +68,9 @@ RUN echo "zend_extension = /usr/lib/php/20210902/ioncube_loader_lin_8.1.so" >> /
 # GeoIP Download (From: https://github.com/wp-statistics/GeoLite2-City)
 COPY GeoLite2-City.mmdb /usr/share/GeoIP/GeoLite2-City.mmdb
 
+# Cron 설정: 1분마다 /var/www/html/cron.php 실행
+RUN echo "* * * * * php /var/www/html/cron.php > /dev/null 2>&1" >> /etc/crontab
+
 # SCRIPT
 RUN echo 'service cron start\n/usr/sbin/apachectl -D FOREGROUND' > /entrypoint.sh
 
