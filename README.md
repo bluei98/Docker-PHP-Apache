@@ -1,8 +1,8 @@
 # Docker Ubuntu-PHP-Apache
 
 ## Version
-* Ubuntu 22.04
-* PHP 8.1.2 with composer
+* Ubuntu 24.04
+* PHP 8.4 with composer
 * Apache 2.4.46
 
 ## Quick Start
