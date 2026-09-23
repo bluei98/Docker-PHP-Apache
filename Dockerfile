@@ -24,7 +24,7 @@ RUN apt-get install -y gcc make telnet whois vim git gettext cron mariadb-client
 
 # Apache PHP 설치
 RUN apt-get install -y apache2 apache2-utils libapache2-mod-php
-RUN apt-get install -y php php-dev php-mysql php-mbstring php-curl php-gd php-imagick php-memcache php-xmlrpc php-zip php-redis composer
+RUN apt-get install -y php php-dev php-mysql php-pgsql php-mbstring php-curl php-gd php-imagick php-memcache php-xmlrpc php-zip php-redis composer
 
 # 라이브러리 설치
 RUN pear install MIME_Type
@@ -67,6 +67,9 @@ RUN echo "zend_extension = /usr/lib/php/20210902/ioncube_loader_lin_8.1.so" >> /
 
 # GeoIP Download (From: https://github.com/wp-statistics/GeoLite2-City)
 COPY GeoLite2-City.mmdb /usr/share/GeoIP/GeoLite2-City.mmdb
+
+# Run the application scheduler every minute as the web-service user.
+RUN echo '* * * * * www-data /usr/bin/php /var/www/html/cron.php >> /dev/null 2>&1' >> /etc/crontab
 
 # SCRIPT
 RUN echo 'service cron start\n/usr/sbin/apachectl -D FOREGROUND' > /entrypoint.sh
